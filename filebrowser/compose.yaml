@@ -1,0 +1,17 @@
+name: filebrowser
+services:
+  filebrowser:
+    volumes:
+      - type: bind
+        source: /home/cole/Shared
+        target: /srv
+      - type: bind
+        source: /home/cole/workspace/filebrowser/filebrowser.db
+        target: /filebrowser.db
+      - type: bind
+        source: /home/cole/workspace/filebrowser/.filebrowser.json
+        target: /.filebrowser.json
+    ports:
+      - 8080:8080
+    image: filebrowser/filebrowser
+    restart: unless-stopped

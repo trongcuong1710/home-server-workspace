@@ -1,0 +1,18 @@
+services:
+  qloapps:
+    image: webkul/qloapps_docker:latest
+    ports:
+      - "80:80"       # HTTP access
+      - "3306:3306"   # MySQL access
+      - "2222:22"     # SSH access
+    environment:
+      USER_PASSWORD: ${USER_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - type: bind
+        source: /home/cole/mnt/qloapps/data
+        target: /home/qloapps/www/hotelcommerce
+      - type: bind
+        source: /home/cole/mnt/qloapps/db
+        target: /var/lib/mysql
